@@ -7,13 +7,19 @@
 
 <script type="text/javascript">	
 
+	function userid(){
+		//將userid丟去聊天室
+		var user = document.getElementById('userid').value;
+		var nextpage = "chatting.html?"+user;
+		window.location.replace(nextpage);
+
+	}
 
 </script>
 
 	<h1>Login</h1>
 	<input type="text" id="userid">
-	<input type="button" name="b1" value="go" onclick="location.href='chatting.html'">
-
+	<input type="button" value="go" onclick="userid()">
 
 </body>
 </html>
