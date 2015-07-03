@@ -1,0 +1,38 @@
+
+<html>
+<head>
+	<title>Chatting</title>
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">	
+	
+	function msg(){
+		var text=document.getElementById("inputtext").value;
+		// document.getElementById("msg").value+=“/n”;
+		document.getElementById("msg").value+="Wei:";
+		document.getElementById("msg").value+=text;
+
+		document.getElementById("inputtext").value="";
+
+
+		
+	}
+
+	</script>
+</head>
+<body>
+<table style="width:500px" id="msg">
+  <tr>
+    <th></th>
+  </tr>
+
+</table>
+	<!-- <textarea id="msg" name="message" rows="10" cols="100"></textarea> -->
+	<br>
+	<!-- <div style="padding:5px;border:1px solid grey;width:500px;height:300px"></div> -->
+	<input type="text" id="inputtext" value="" style="width:500px">
+	<input type="button" value="enter" onclick="msg()">
+
+     
+
+</body>
+</html>
