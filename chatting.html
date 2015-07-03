@@ -11,8 +11,12 @@
 	    var url = location.href;
 	    //取得問號之後的值
 	    var userid = url.split("?");
-	    // alert(userid[1]);
- 
+	    // alert(userid[1]);	
+	    var hello = document.getElementById("hellouser");
+	    if (userid[1] != ""){
+	    	hello.innerHTML = "Hello, "+userid[1];
+	    }
+		
    }
 
 	
@@ -21,7 +25,6 @@
 		// document.getElementById("msg").value+=“/n”;
 		document.getElementById("msg").value+="Wei:";
 		document.getElementById("msg").value+=text;
-
 		document.getElementById("inputtext").value="";
 
 
@@ -31,8 +34,13 @@
 	</script>
 </head>
 
-<body onload="getuserid()">
 
+<body onload="getuserid()" align="center">
+
+<br>
+<br>
+
+	<H5 id="hellouser">You haven't login</H5>
 
 	<table style="width:500px" id="msg">
 	  <tr>
