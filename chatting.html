@@ -6,11 +6,12 @@
 	<script type="text/javascript">	
 
 	function getuserid () {
-     
-    //URL
-    var url = location.href;
-    //取得問號之後的值
-    var temp = url.split("?");
+    
+	    //URL
+	    var url = location.href;
+	    //取得問號之後的值
+	    var userid = url.split("?");
+	    // alert(userid[1]);
  
    }
 
@@ -29,14 +30,18 @@
 
 	</script>
 </head>
-<body>
-<table style="width:500px" id="msg">
-  <tr>
-    <th></th>
-  </tr>
 
-</table>
+<body onload="getuserid()">
+
+
+	<table style="width:500px" id="msg">
+	  <tr>
+	    <th></th>
+	  </tr>
+
+	</table>
 	<!-- <textarea id="msg" name="message" rows="10" cols="100"></textarea> -->
+	
 	<br>
 	<!-- <div style="padding:5px;border:1px solid grey;width:500px;height:300px"></div> -->
 	<input type="text" id="inputtext" value="" style="width:500px">
