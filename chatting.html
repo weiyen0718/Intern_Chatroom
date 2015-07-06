@@ -11,17 +11,16 @@
 	    var userid = url.split("?");
 
 	    return userid[1];
-   }
+	}
 
-   function printhello(){
+	function printhello(){
 
    		var user=getuserid();
    		var hello = document.getElementById("hellouser");
    		if (user != ""){
 	    	hello.innerHTML = "Hello, "+user;
 	    }
-
-   }
+	}
 
 	</script>
 </head>
