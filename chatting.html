@@ -24,25 +24,6 @@
    }
 
 	</script>
-
-	<script src='jquery-2.1.4.min.js'> </script>
-		<script>
-			
-			var updateTextArea = function() {
-				if($("#inputText").val() == "") {
-  					console.log("Nothing sent");
-  				} else {
-  					$("#chattingArea").append(getuserid()+":" + $("#inputText").val() + "<br>");
-  					$("#inputText").val("");
-  				}
-	  		};
-
-			$(document).ready( function() {
-				$( "#send" ).click(updateTextArea);
-			});
-			
-		</script>
-
 </head>
 
 
@@ -65,7 +46,7 @@
         $('#m').val('');
         return false;
       });
-      
+
       socket.on('chat message', function(msg){
       	$('#messages').append($('<li>').text(msg));
         // $('#messages').append($('<li>').text(msg));
