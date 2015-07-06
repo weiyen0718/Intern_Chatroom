@@ -6,56 +6,73 @@
 	<script type="text/javascript">	
 
 	function getuserid () {
-    
-	    //URL
+	    
 	    var url = location.href;
-	    //取得問號之後的值
 	    var userid = url.split("?");
-	    // alert(userid[1]);	
-	    var hello = document.getElementById("hellouser");
-	    if (userid[1] != ""){
-	    	hello.innerHTML = "Hello, "+userid[1];
-	    }
-		
+
+	    return userid[1];
    }
 
-	
-	function msg(){
-		var text=document.getElementById("inputtext").value;
-		// document.getElementById("msg").value+=“/n”;
-		document.getElementById("msg").value+="Wei:";
-		document.getElementById("msg").value+=text;
-		document.getElementById("inputtext").value="";
+   function printhello(){
 
+   		var user=getuserid();
+   		var hello = document.getElementById("hellouser");
+   		if (user != ""){
+	    	hello.innerHTML = "Hello, "+user;
+	    }
 
-		
-	}
+   }
 
 	</script>
+
+	<script src='jquery-2.1.4.min.js'> </script>
+		<script>
+			
+			var updateTextArea = function() {
+				if($("#inputText").val() == "") {
+  					console.log("Nothing sent");
+  				} else {
+  					$("#chattingArea").append(getuserid()+":" + $("#inputText").val() + "<br>");
+  					$("#inputText").val("");
+  				}
+	  		};
+
+			$(document).ready( function() {
+				$( "#send" ).click(updateTextArea);
+			});
+			
+		</script>
+
 </head>
 
 
-<body onload="getuserid()" align="center">
+<body onload="printhello()" align="center">
 
-<br>
-<br>
+<H5 id="hellouser">You haven't login</H5>
+<ul id="messages"></ul>
 
-	<H5 id="hellouser">You haven't login</H5>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      var socket = io();
 
-	<table style="width:500px" id="msg">
-	  <tr>
-	    <th></th>
-	  </tr>
+      $('form').submit(function(){
+        socket.emit('chat message', getuserid()+":"+$('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      
+      socket.on('chat message', function(msg){
+      	$('#messages').append($('<li>').text(msg));
+        // $('#messages').append($('<li>').text(msg));
+      });
+    </script>
 
-	</table>
-	<!-- <textarea id="msg" name="message" rows="10" cols="100"></textarea> -->
+
 	
-	<br>
-	<!-- <div style="padding:5px;border:1px solid grey;width:500px;height:300px"></div> -->
-	<input type="text" id="inputtext" value="" style="width:500px">
-	<input type="button" value="enter" onclick="msg()">
-
-     
-
 </body>
 </html>
