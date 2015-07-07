@@ -2,7 +2,11 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var mongo = require('mongodb').MongoClient;
+var mongodb = require('mongodb');
+
+var mongodbServer = new mongodb.Server('localhost', 27017, { auto_reconnect: true, poolSize: 10 });
+var db = new mongodb.Db('mydb', mongodbServer);
+
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/chatroom.html');
@@ -22,14 +26,32 @@ io.on('connection', function(socket){
  //        stream.on('data', function (chat) { socket.emit('chat', chat); });
  //    });
 
+
+		
   socket.on('chat message', function(msg){
-    // mongo.connect(process.env.CUSTOMCONNSTR_MONGOLAB_URI, function (err, db) {
-    //         var collection = db.collection('chat messages');
-    //         collection.insert({ content: msg }, function (err, o) {
-    //             if (err) { console.warn(err.message); }
-    //             else { console.log("chat message inserted into db: " + msg); }
-    //         });
-    //         });
+     	/* open db */
+		db.open(function() {
+		    /* Select 'contact' collection */
+		    db.collection('chatting', function(err, collection) {
+		        /* Insert a data */
+		        collection.insert({
+		        	user:"",
+		            message: msg,
+		         
+		        }, function(err, data) {
+		            if (data) {
+		                console.log('Successfully Insert');
+		            } else {
+		                console.log('Failed to Insert');
+		            }
+		        });
+
+		    });
+		});
+
+
+
+
   	io.emit('chat message', msg);
   });
 
