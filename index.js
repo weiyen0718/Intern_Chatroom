@@ -23,33 +23,28 @@ io.on('connection', function(socket){
     socket.on('disconnect', function () {
         console.log('a user disconnected');
     });
-		
+	
+
+
     socket.on('chat message', function(msg){
      	/* open db */
 		db.open(function() {
 		    /* Select 'contact' collection */
 
 		    db.collection('chatting', function(err, collection) {
-		        /* Insert a data */
-		        console.log(collection.find());
+		        /* Insert a data */	
 		        collection.insert({
-		        	user:"",
-		            message: msg,
+		            message: msg
 		         
 		        }, function(err, data) {
 		            if (data) {
-		                console.log('Successfully Insert');
+		                console.log('Successfully Insert:'+msg);
 		            } else {
-		                console.log('Failed to Insert');
+		                console.log('Failed to Insert:'+msg);
 		            }
 		        });
-
 		    });
 		});
-
-
-
-
   	io.emit('chat message', msg);
   });
 
@@ -57,9 +52,7 @@ io.on('connection', function(socket){
 });
 
 
-
-
-
 http.listen(3000, function(){
   console.log('listening on *:3000');
+
 });
