@@ -20,20 +20,18 @@ app.get('/chatting.html', function(req, res){
 io.on('connection', function(socket){
 
     console.log('a user connected');
-	// mongo.connect(process.env.CUSTOMCONNSTR_MONGOLAB_URI, function (err, db) {
- //        var collection = db.collection('chat messages')
- //        var stream = collection.find().sort({ _id : -1 }).limit(10).stream();
- //        stream.on('data', function (chat) { socket.emit('chat', chat); });
- //    });
-
-
+    socket.on('disconnect', function () {
+        console.log('a user disconnected');
+    });
 		
-  socket.on('chat message', function(msg){
+    socket.on('chat message', function(msg){
      	/* open db */
 		db.open(function() {
 		    /* Select 'contact' collection */
+
 		    db.collection('chatting', function(err, collection) {
 		        /* Insert a data */
+		        console.log(collection.find());
 		        collection.insert({
 		        	user:"",
 		            message: msg,
@@ -57,6 +55,10 @@ io.on('connection', function(socket){
 
 
 });
+
+
+
+
 
 http.listen(3000, function(){
   console.log('listening on *:3000');
