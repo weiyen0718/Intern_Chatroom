@@ -12,42 +12,50 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/chatroom.html');
 });
 
+
 app.get('/chatting.html', function(req, res){
   res.sendFile(__dirname + '/chatting.html');
 });
 
 
+
+
 io.on('connection', function(socket){
 
     console.log('a user connected');
-    // socket.on('disconnect', function () {
-    //     console.log('a user disconnected');
-    // });
+ 
+	db.open(function() {
+	
+		db.collection('chatting', function(err, collection) {
+	    
+	    socket.on('chat message', function(msg){
+	
+			collection.insert({
+			    message: msg,
+			}, function(err, data) {
+			    if (data) {
+			        console.log('Successfully Insert:'+msg);
+			    } else {
+			        console.log('Failed to Insert:'+msg);
+			    }
+			});
+	  	io.emit('chat message', msg);
+	    });
 
-
-    socket.on('chat message', function(msg){
-     	/* open db */
-		db.open(function() {
-		    /* Select 'contact' collection */
-		    db.collection('chatting', function(err, collection) {
-		        /* Insert a data */	
-		        collection.insert({
-		            message: msg,
-		         
-		        }, function(err, data) {
-		            if (data) {
-		                console.log('Successfully Insert:'+msg);
-		            } else {
-		                console.log('Failed to Insert:'+msg);
-		            }
-		        });
-
-		        // 
-		    });
+	    socket.on('history message', function(his){
+		   db.chatting.find({}, function(err, users) {
+		  if( err || !users) console.log("No users found");
+		  else users.forEach( function(femaleUser) {
+		    console.log("!!!");
+		  } );
 		});
-  	io.emit('chat message', msg);
-  });
 
+
+		});
+
+		});
+
+	});
 
 });
 
