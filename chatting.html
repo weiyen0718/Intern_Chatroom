@@ -4,7 +4,7 @@
 	<title>Chatting</title>
 	<script type="text/javascript">	
 
-	function getuserid () {
+		function getuserid () {
 	    
 	    var url = location.href;
 	    var userid = url.split("?");
@@ -21,12 +21,16 @@
 	    	hello.innerHTML = "Hello, "+user;
 
 	  		socket.emit('chat message', "[ "+user+" join chatroom ]");
-     
-		}
+     		
+			}
+
+		
 	}
 
+	
 	</script>
 </head>
+
 
 
 <body onload="printhello()" align="center">
@@ -50,20 +54,16 @@
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       var socket = io();	  
-    
-
+     
     $('form').submit(function(){
         socket.emit('chat message', getuserid()+":"+$('#m').val());
         
     	$('#m').val('');
         return false;
     });
-
-      
+     
       socket.on('chat message', function(msg){
-
       	$('#messages').append($('<ol>').text(msg))
-
     	$("#mydiv").scrollTop($("#mydiv")[0].scrollHeight)
       });
     </script>

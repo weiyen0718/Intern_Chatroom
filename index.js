@@ -20,21 +20,19 @@ app.get('/chatting.html', function(req, res){
 io.on('connection', function(socket){
 
     console.log('a user connected');
-    socket.on('disconnect', function () {
-        console.log('a user disconnected');
-    });
-	
+    // socket.on('disconnect', function () {
+    //     console.log('a user disconnected');
+    // });
 
 
     socket.on('chat message', function(msg){
      	/* open db */
 		db.open(function() {
 		    /* Select 'contact' collection */
-
 		    db.collection('chatting', function(err, collection) {
 		        /* Insert a data */	
 		        collection.insert({
-		            message: msg
+		            message: msg,
 		         
 		        }, function(err, data) {
 		            if (data) {
@@ -43,6 +41,8 @@ io.on('connection', function(socket){
 		                console.log('Failed to Insert:'+msg);
 		            }
 		        });
+
+		        // 
 		    });
 		});
   	io.emit('chat message', msg);
