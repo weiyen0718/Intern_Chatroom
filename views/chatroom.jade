@@ -40,6 +40,7 @@ html
       }
 
       function historyMsg() {
+       printhello();
         $.getJSON("/message", function(data) {
           console.log(data);
           
@@ -48,7 +49,7 @@ html
             $('#outputData').append($('<li>').text(val.note));
           });
         });
-        printhello();
+       
       }
 
 
