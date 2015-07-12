@@ -43,11 +43,21 @@ io.on('connection', function(socket){
 	    });
 
 	    socket.on('history message', function(his){
-		   db.chatting.find({}, function(err, users) {
-		  if( err || !users) console.log("No users found");
-		  else users.forEach( function(femaleUser) {
-		    console.log("!!!");
-		  } );
+		   console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@');
+
+		   collection.find.limit(3, function(err, data) {
+			    if (data) {
+			    	// var allmsg="";
+			    	// allmsg=data;
+			        // console.log('yyyyyy');
+
+			        socket.emit('history message', data);
+			    } else {
+			        console.log('nooooo');
+			    }
+			});
+
+		   // io.emit('history message', history);
 		});
 
 
@@ -57,7 +67,7 @@ io.on('connection', function(socket){
 
 	});
 
-});
+// });
 
 
 http.listen(3000, function(){

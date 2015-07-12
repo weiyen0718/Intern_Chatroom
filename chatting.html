@@ -4,7 +4,7 @@
 	<title>Chatting</title>
 	<script type="text/javascript">	
 
-		function getuserid () {
+	function getuserid () {
 	    
 	    var url = location.href;
 	    var userid = url.split("?");
@@ -21,7 +21,8 @@
 	    	hello.innerHTML = "Hello, "+user;
 
 	  		socket.emit('chat message', "[ "+user+" join chatroom ]");
-	  		
+	  		socket.emit('history message', "");
+        
         
 			}
 
@@ -54,22 +55,7 @@
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-      var socket = io();	  
-	  //   $(function(){
-	  //   $.ajax({
-	  //     url: 'http://localhost:3000/messages',
-	  //     type: 'get',
-	  //     dataType: 'jsonp',
-	  //     jsonp: 'jsonp', // mongod is expecting the parameter name to be called "jsonp"
-	  //     success: function (data) {
-	  //       console.log('success', data);
-	  //     },
-	  //     error: function (XMLHttpRequest, textStatus, errorThrown) {
-	  //       console.log('error', errorThrown);
-	  //     }
-	  //   });
-	  // });
-
+      var socket = io();	
 
     $('form').submit(function(){
         socket.emit('chat message', getuserid()+":"+$('#m').val());
@@ -78,11 +64,24 @@
         return false;
     });
     
-
      socket.on('chat message', function(msg){
       	$('#messages').append($('<ol>').text(msg))
     	$("#mydiv").scrollTop($("#mydiv")[0].scrollHeight)
       });
+
+
+
+    socket.on('history message',function(his){
+    	// jQuery.each( his, function( i, val ) {
+    	for(var index in his) {
+    	$('#messages').append($('<ol>').text(his[index].message));
+    	}
+    	// $("#mydiv").scrollTop($("#mydiv")[0].scrollHeight)
+    });
+
+
+    
+
     </script>
 
 
