@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title Login
+    | &#x9;&#x9;
+    script(type='text/javascript').
+      
+      $(function() {
+        $("#messageDiv input").keypress(function(event) {       
+          if (event.keyCode == 13) getValue();
+        });
+      });
+
+      function userid() {
+        var user = document.getElementById('userinput').value;
+        var nextpage = "chatroom?"+user;
+        window.location.replace(nextpage);
+       
+      }
+
+
+
+  | &#x9;
+  body(align="center")
+
+    div#messageDiv()
+      input#userinput(type='text')
+      | &#x9;&#x9;&#x9;&#x9;
+      br
+      | &#x9;&#x9;&#x9;&#x9;
+      button#msgBtn(onclick='userid()') Submit!
+

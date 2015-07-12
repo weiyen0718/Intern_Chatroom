@@ -4,7 +4,11 @@ var Todo = require('../models/todo.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  	res.render('chatroom', { title: 'Express' });
+  	res.render('login', { title: 'Express' });
+});
+
+router.get('/chatroom', function(req, res, next) {
+  	res.render('chatroom', { title: 'chat' });
 });
 
 //Routing for API
