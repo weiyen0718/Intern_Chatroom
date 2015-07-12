@@ -45,7 +45,7 @@ html
           
           $.each(data, function(key, val) {
             console.log(val);
-            $('#outputData').append($('<li class="history">').text(val.note));
+            $('#outputData').append($('<li>').text(val.note));
           });
         });
         printhello();
@@ -56,15 +56,23 @@ html
           var message = getuserid();
           message+= " : " + document.getElementById('inputarea').value ;
           socket.emit('chat message', message);
-            
+          
           $('#inputarea').val('');
           $.post("/message", {note: message});
         return false;
       }
 
       socket.on('chat message', function(msg){
+        
+        var usernamesplit = msg.split(" :");
+
+        if (usernamesplit[0] == getuserid()){
+        $('#outputData').append($('<li class="thisUser">').text(msg));
+        }
+        else{
         $('#outputData').append($('<li>').text(msg));
-        $('#messageDiv').scrollTop($('#messageDiv')[0].scrollHeight);
+        }
+        
       });
 
       
