@@ -1,0 +1,29 @@
+html {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font: 25px;
+	line-height: 1.8889;
+	color: #555753;
+
+	margin: 0px;
+	padding: 0px;
+
+}
+
+#login{
+    color:#696969;
+}
+
+
+#messageDiv {
+    
+
+    vertical-align:middle;
+}
+
+
+
+

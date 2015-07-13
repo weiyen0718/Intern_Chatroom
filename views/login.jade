@@ -3,6 +3,7 @@ html
   head
     title Login
     | &#x9;&#x9;
+    link(rel='stylesheet', type='text/css', href='stylesheets/login.css')
     script(type='text/javascript').
       
       $(function() {
@@ -24,9 +25,10 @@ html
   body(align="center")
 
     div#messageDiv()
+      H3#login LOGIN
       input#userinput(type='text')
       | &#x9;&#x9;&#x9;&#x9;
       br
       | &#x9;&#x9;&#x9;&#x9;
-      button#msgBtn(onclick='userid()') Submit!
+      button#msgBtn(onclick='userid()') Go!
 

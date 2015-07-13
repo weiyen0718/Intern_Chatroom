@@ -8,6 +8,7 @@ html
     script(type='text/javascript', src='javascripts/jquery-2.1.4.min.js')
     | &#x9;&#x9;
     script(type='text/javascript', src='https://cdn.socket.io/socket.io-1.2.0.js')
+    
     | &#x9;&#x9;
     script(type='text/javascript').
       
@@ -29,16 +30,16 @@ html
       }
 
       function printhello(){
-
         var user=getuserid();
         var hello = document.getElementById("hellouser");
-
+        var now = new Date();
+        var h = now.getHours();
+        var m = now.getMinutes();
+        var s = now.getSeconds();
         if (user != ""){
-          hello.innerHTML = "Hello, "+user;
-          var usermsg= "[ " + user + " join chatroom ]";
-          
-          socket.emit('new user',usermsg );
-          $.post("/message", {note:  usermsg }); 
+            hello.innerHTML = "Hello, "+user;
+            var usermsg= "[ " + user + " join chatroom ] " +h+":"+m+":"+s;
+            $.post("/message", {note:  usermsg });          
         } 
       }
 
@@ -82,26 +83,23 @@ html
         
       });
       
-      socket.on('new user', function(msg){
-      
-        $('#outputData').append($('<li class="UserEnter">').text(msg));
-        console.log("!!!!!!");
-        
+      socket.on('new user', function(username){      
+        $('#outputData').append($('<li class="UserEnter">').text(username));
       });
 
       
   | &#x9;
   body(align='center' onload="historyMsg()")
- 
+    br
     h5#hellouser You haven't login
-    | &#x9;&#x9;
-    span
+    
+
       
-    | &#x9;&#x9;&#x9;
+    
     div#messageDiv()
       ul#outputData()
       | &#x9;&#x9;&#x9;&#x9;
-
+      br
       input#inputarea(type='text')
       | &#x9;&#x9;&#x9;&#x9;
       br
