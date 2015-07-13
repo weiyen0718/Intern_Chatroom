@@ -33,6 +33,11 @@ io.on('connection', function(socket){
     io.emit('chat message', msg);
   });
 
+  socket.on('new user', function(msg){
+    io.emit('new user', msg);
+  });
+
+
   socket.on('disconnected', function(){
     console.log('User disconnected. Socket id %s', socket.id);
   });

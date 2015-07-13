@@ -35,12 +35,15 @@ html
 
         if (user != ""){
           hello.innerHTML = "Hello, "+user;
-          $.post("/message", {note:  "[ "+user+" join chatroom ]" }); 
+          var usermsg= "[ " + user + " join chatroom ]";
+          
+          socket.emit('new user',usermsg );
+          $.post("/message", {note:  usermsg }); 
         } 
       }
 
       function historyMsg() {
-       printhello();
+       
         $.getJSON("/message", function(data) {
           console.log(data);
           
@@ -49,7 +52,7 @@ html
             $('#outputData').append($('<li>').text(val.note));
           });
         });
-       
+       printhello();
       }
 
 
@@ -63,6 +66,9 @@ html
         return false;
       }
 
+
+
+
       socket.on('chat message', function(msg){
         
         var usernamesplit = msg.split(" :");
@@ -73,6 +79,13 @@ html
         else{
         $('#outputData').append($('<li>').text(msg));
         }
+        
+      });
+      
+      socket.on('new user', function(msg){
+      
+        $('#outputData').append($('<li class="UserEnter">').text(msg));
+        console.log("!!!!!!");
         
       });
 
