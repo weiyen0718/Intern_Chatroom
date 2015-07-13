@@ -17,6 +17,7 @@ h5 {
     
     text-align: center;
     margin-top: 2px;
+    color: #247BA0;
 }
 
 
@@ -46,6 +47,7 @@ div {
     text-align: left;
     border-style: solid;
     border-width: 2px;
+    border-color: #B2DBBF;
     padding: 0px;
     margin-bottom: 8px;
 }
@@ -74,13 +76,13 @@ textarea {
 }
 
 .UserEnter {
-    color: #E35553;
+    color: #FF4C8A;
     
 }
 
 .thisUser {
     
-    background: #eee;
+    background: #FCFFC6;
 }
 
 #inputData {

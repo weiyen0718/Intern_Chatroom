@@ -8,15 +8,20 @@ html
       
       $(function() {
         $("#messageDiv input").keypress(function(event) {       
-          if (event.keyCode == 13) getValue();
+          if (event.keyCode == 13) 
+            userid();
         });
       });
 
       function userid() {
         var user = document.getElementById('userinput').value;
-        var nextpage = "chatroom?"+user;
-        window.location.replace(nextpage);
-       
+        if (user == "" ){
+          alert("you didn't enter your name!");
+        }
+        else{
+          var nextpage = "chatroom?"+user;
+          window.location.replace(nextpage);
+        }
       }
 
 

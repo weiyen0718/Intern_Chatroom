@@ -24,6 +24,10 @@ body {
     vertical-align:middle;
 }
 
-
+.button {
+    border: none;
+    background: url('/images/login.png') no-repeat top left;
+    padding: 2px 8px;
+}
 
 
