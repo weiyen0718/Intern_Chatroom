@@ -17,7 +17,9 @@
   },
   "main": "app.js",
   "devDependencies": {},
-  "author": "",
+  "author": "WeiYen",
+  "repository": "https://github.com/weiyen0718/Intern_Chatroom",
+  "logo": "https://chattingroom-hi.herokuapp.com",
   "license": "ISC",
   "description": ""
 }
