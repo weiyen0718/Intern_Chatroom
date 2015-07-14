@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title Login
+    | &#x9;&#x9;
+
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js')
+    link(href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css')
+    link(rel='stylesheet', type='text/css', href='stylesheets/login.css')
+    script(src='public/javascripts/chatroomCtrl.js')
+    script(src='public/javascripts/app.js')
+
+
+  | &#x9;
+  body(ng-app="chatroom" align="center")
+
+    div(ng-controller="chatroomCtrl" )
+      H3#login LOGIN {{nickname }}
+      input#userinput(ng-model='nickname')
+      | &#x9;&#x9;&#x9;&#x9;
+      
+      br
+      | &#x9;&#x9;&#x9;&#x9;
+      input#go(type='image' src="images/login.png"  ng-keypress='nameEnter($event)')
+      
+      | &#x9;&#x9;&#x9;&#x9;

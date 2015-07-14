@@ -3,15 +3,19 @@ html
   head
     title Login
     | &#x9;&#x9;
+
     link(rel='stylesheet', type='text/css', href='stylesheets/login.css')
+    script(type='text/javascript', src='javascripts/jquery-2.1.4.min.js')
     script(type='text/javascript').
       
       $(function() {
-        $("#messageDiv input").keypress(function(event) {       
+        $("#userinput").keypress(function(event) {       
           if (event.keyCode == 13) 
             userid();
         });
       });
+
+
 
       function userid() {
         var user = document.getElementById('userinput').value;
@@ -35,5 +39,6 @@ html
       | &#x9;&#x9;&#x9;&#x9;
       br
       | &#x9;&#x9;&#x9;&#x9;
-      button#msgBtn(onclick='userid()') Go!
+      input#go(type='image' src="images/login.png" onclick='userid()' )
+     
 

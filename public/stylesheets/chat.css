@@ -22,19 +22,6 @@ h5 {
 
 
 
-label {
-    position: relative;
-    _position: relative;
-    font: Cambria;
-    top: -55px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80px;
-    height: 30px;
-}
-
-
-
 div {
     position: relative;
     _position: relative;
@@ -47,17 +34,20 @@ div {
     text-align: left;
     border-style: solid;
     border-width: 2px;
-    border-color: #B2DBBF;
+    border-color: #E6EDE8;
     padding: 0px;
-    margin-bottom: 8px;
+    
 }
 
-textarea {
-    width: 700px;
-    height: 400px;
-    border: 0px;
-    font: 22px Cambria, Constantia, sans-serif;
-    line-height: 1.18889;
+
+
+#inputarea {
+    position: relative;    
+    top: 0px;    
+    width: 702px;
+    border: 2px solid #E6EDE8;
+    
+    font: 20px ;
 }
 
 #outputData {
@@ -69,43 +59,37 @@ textarea {
     margin: 0; 
     padding: 0;
     overflow: auto;
-    color: #333;
+    color: #64ADA1;
 }
 #outputData li {
     padding: 5px 10px;
 }
 
 .UserEnter {
-    color: #FF4C8A;
+    color: #FF669B;
+    
     
 }
+
 
 .thisUser {
-    
-    background: #FCFFC6;
+    color: #175068;
+    background: #FFFFDD;
 }
 
-#inputData {
-    position: relative;    
-    top: 0px;
-    
-    width: 703px;
-    border: 2px solid black;
-    font: 20px ;
-}
 
 
 button {
     position: relative;
     _position: relative;
-    top: -41px;
-    left: 700px;
+    top: -31px;
+    left: 720px;
     margin-left: auto;
     margin-right: auto;
-    width: 70px;
-    height: 30px;
-    border: 2px solid #333;
+    width: 60px;
+    height: 25px;
+    border:2px solid #175068;
     font: 15px;
-    color: #eee;
-    background-color: #333;
+    color: #FFFFDD;
+    background-color: #175068;
 }

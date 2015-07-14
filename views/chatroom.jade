@@ -8,7 +8,7 @@ html
     script(type='text/javascript', src='javascripts/jquery-2.1.4.min.js')
     | &#x9;&#x9;
     script(type='text/javascript', src='https://cdn.socket.io/socket.io-1.2.0.js')
-    
+
     | &#x9;&#x9;
     script(type='text/javascript').
       
@@ -39,7 +39,9 @@ html
         if (user != ""){
             hello.innerHTML = "Hello, "+user;
             var usermsg= "[ " + user + " join chatroom ] " +h+":"+m+":"+s;
-            $.post("/message", {note:  usermsg });          
+            $.post("/message", {note:  usermsg });
+            socket.emit('new user', usermsg);
+
         } 
       }
 
@@ -53,7 +55,8 @@ html
             $('#outputData').append($('<li>').text(val.note));
           });
         });
-       printhello();
+        setTimeout(function(){ printhello(); }, 1);
+       
       }
 
 
@@ -71,20 +74,24 @@ html
 
 
       socket.on('chat message', function(msg){
-        
+        //當前使用者
         var usernamesplit = msg.split(" :");
 
+
         if (usernamesplit[0] == getuserid()){
-        $('#outputData').append($('<li class="thisUser">').text(msg));
+          $('#outputData').append($('<li class="thisUser">').text(msg));
         }
         else{
-        $('#outputData').append($('<li>').text(msg));
+          $('#outputData').append($('<li>').text(msg));
         }
-        
+        var scrollTop = $("#outputData")[0].scrollHeight;  
+        $("#outputData").scrollTop(scrollTop); 
       });
       
       socket.on('new user', function(username){      
         $('#outputData').append($('<li class="UserEnter">').text(username));
+        var scrollTop = $("#outputData")[0].scrollHeight;  
+        $("#outputData").scrollTop(scrollTop); 
       });
 
       
@@ -100,6 +107,7 @@ html
       ul#outputData()
       | &#x9;&#x9;&#x9;&#x9;
       br
+
       input#inputarea(type='text')
       | &#x9;&#x9;&#x9;&#x9;
       br
